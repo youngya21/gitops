@@ -1,11 +1,8 @@
-kind: ImageSetConfiguration
-apiVersion: mirror.openshift.io/v1alpha2
-mirror:
-  operators:
-  - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.16
-    packages:
-    - name: openshift-gitops-operator
-      channels:
-        - name: latest
-          minVersion: 1.15.0
-          maxVersion: 1.15.0
+apiVersion: argoproj.io/v1alpha1
+kind: ArgoCD
+metadata:
+  name: myargocd
+spec:
+  server:
+    route:
+      enabled: true
