@@ -1,9 +1,11 @@
-kind: Cluster
-apiVersion: kind.x-k8s.io/v1alpha1
-nodes:
-- role: control-plane
-- role: control-plane
-- role: control-plane
-- role: worker
-- role: worker
-- role: worker
+kind: ImageSetConfiguration
+apiVersion: mirror.openshift.io/v1alpha2
+mirror:
+  operators:
+  - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.16
+    packages:
+    - name: openshift-gitops-operator
+      channels:
+        - name: latest
+          minVersion: 1.15.0
+          maxVersion: 1.15.0
