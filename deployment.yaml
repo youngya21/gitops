@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: quay.io/jacky_lee_eds/nginx:1.27.4-1  # 確保使用 unprivileged 版本
+        ports:
+        - containerPort: 8082
+        volumeMounts:
+        - mountPath: /var/cache/nginx
+          name: nginx-cache
+      volumes:
+      - name: nginx-cache
+        emptyDir: {}  # OpenShift 會自動處理權限
